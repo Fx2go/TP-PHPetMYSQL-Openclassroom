@@ -28,14 +28,27 @@
 
 
      //.. SI NON, on affiche le formulaire
+     elseif (isset($_POST['motdepasse']) AND $_POST['motdepasse']!=$mdp)
+     { ?>
+      <h1> Désolé, ce n'est pas le bon mot de passe</h1>
+      <form method="post" action="TP_motDePasse_1page.php">
+          <p>
+               Essaye encore :
+          <input type="password" name="motdepasse" label="Mot de passe"></input>
+          <input type="submit" name="envoyer"></input>
+          </p>
+     </form>
 
+     <?php 
+      } //fermeture du ELSEIF
      else {
 
      ?>
 
      <form method="post" action="TP_motDePasse_1page.php">
-          <p>
-               Veuillez entrer le mot de passe pour accéder à la page secrète
+          
+               <h1>Veuillez entrer le mot de passe pour accéder à la page secrète</h1>
+           <p> 
           <input type="password" name="motdepasse" label="Mot de passe"></input>
           <input type="submit" name="envoyer"></input>
           </p>
