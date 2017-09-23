@@ -11,7 +11,7 @@
 			<p>	
 <!--Champ "Pseudo"-->
 				Pseudo :
-				<input type="text" name="pseudo" ></input><br/>
+				<input type="text" name="pseudo" value="<?php if(isset($_COOKIE['pseudo'])){echo $_COOKIE['pseudo'];} ?>"></input><br/>
 <!--Champ "Message"-->
 				Message :
 				<input type="text" name="message" ></input><br/>
