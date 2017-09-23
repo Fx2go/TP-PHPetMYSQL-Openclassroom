@@ -20,5 +20,5 @@ $message=strip_tags($_POST['message']);
 	$req->execute(array('pseudo'=>$pseudo, 'message'=> $message));
 
 //On retourne sur la page principale
-
+	header('Location: minichat.php');
 ?>
