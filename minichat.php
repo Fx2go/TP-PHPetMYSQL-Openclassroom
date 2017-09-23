@@ -20,6 +20,9 @@
 				<input type="submit" name="Envoyer">
 			</p>
 		</form>
+
+<a href="minichat.php">Rafraichir</a><br/>
+<p>
 <?php
 // Liste des messages ,du plus récent au plus ancien
 	// On va chercher dans la base minichat les messages
@@ -33,5 +36,6 @@
 	//On ferme le traitement de la requête
 	$req->closeCursor();
 ?>
+	</p>
 	</body>
 </html>
