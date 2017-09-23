@@ -5,15 +5,14 @@
 $pseudo=strip_tags($_POST['pseudo']);
 $message=strip_tags($_POST['message']);
 
-	//(On affiche les variables pour tester)
-	//echo $pseudo.'<br>';
-	//echo $message;
+// On stock le pseudo dans un cookie
+setcookie('pseudo', $pseudo, time() + 365*24*3600);
 
 //On stock les variables en base de données
 	//On se connecte à la base de données
 	include ('minichat_connection_BDD.php');
 	// On execute la requete pour stocker les variables
-	//$bdd->exec('INSERT INTO minichat(pseudo,message) VALUES(\'$pseudo\', \'$message\')');
+
 
 	$req = $bdd->prepare('INSERT INTO minichat(pseudo,message) VALUES(:pseudo,:message)');
 
