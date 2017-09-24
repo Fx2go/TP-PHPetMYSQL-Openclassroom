@@ -30,7 +30,7 @@
 		//...seulement si un n° de page a été envoyé bien sûr !
 		if(isset($_GET['page']))
 		{
-			$page=$_GET['page'];
+			$page=htmlspecialchars($_GET['page']);
 
 
 		}
