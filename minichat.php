@@ -37,5 +37,22 @@
 	$req->closeCursor();
 ?>
 	</p>
+<!-- afficher des liens vers les messages plus anciens-->
+	<ul>
+		<?php
+		//On compte de nombre de messages
+		$req=$bdd->query('SELECT COUNT(*) FROM minichat');
+		$QteMessages = $req->fetch();
+
+		// On calcule le nombre de page (maximum 10 messages par page)
+		$QtePages= ceil($QteMessages[0]/10);
+
+		// On affiche autant de liens qu'il y a de pages
+		for ($i=1;$i<=$QtePages;$i++)
+		{
+		echo'<li><a href="/?page='.$i.'">Page '.$i.'</a></li>';
+		}
+		?>
+	</ul>
 	</body>
 </html>
