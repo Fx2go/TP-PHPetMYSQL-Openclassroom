@@ -69,7 +69,7 @@
 		// On affiche autant de liens qu'il y a de pages
 		for ($i=1;$i<=$QtePages;$i++)
 		{
-		echo'<li><a href="minichat/?page='.$i.'">Page '.$i.'</a></li>';
+		echo'<li><a href="http://localhost/TP-PHPetMYSQL-Openclassroom/minichat/?page='.$i.'">Page '.$i.'</a></li>';
 		}
 		?>
 	</ul>
