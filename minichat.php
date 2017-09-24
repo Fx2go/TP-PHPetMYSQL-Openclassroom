@@ -25,9 +25,28 @@
 <p>
 <?php
 // Liste des messages ,du plus récent au plus ancien
+
+	//On determine le rang du premier message de la page(1/page1,11/page2,21/page 3)
+		//...seulement si un n° de page a été envoyé bien sûr !
+		if(isset($_GET['page']))
+		{
+			$page=$_GET['page'];
+
+
+		}
+		else {
+			$page=1;
+
+		}
+		$decalage=$page*10-10;
+	// Affichons le numéro de page pour info
+	echo '<p><em> ( Page '.$page.' )</em><p/>';	
 	// On va chercher dans la base minichat les messages
 	include ('minichat_connection_BDD.php');
-	$req = $bdd->query('SELECT * FROM minichat ORDER BY id DESC');
+	//on prepare la requete... en précisant le lot de messages à afficher
+	$req = $bdd->prepare('SELECT * FROM minichat ORDER BY id  DESC LIMIT :decalage, 10');
+	$req->bindParam(':decalage', $decalage, PDO::PARAM_INT);
+	$req->execute();
 	//On affiche les enregistrements du plus récent au plus ancien
 	while ($data = $req->fetch())
 	{
@@ -50,7 +69,7 @@
 		// On affiche autant de liens qu'il y a de pages
 		for ($i=1;$i<=$QtePages;$i++)
 		{
-		echo'<li><a href="/?page='.$i.'">Page '.$i.'</a></li>';
+		echo'<li><a href="minichat/?page='.$i.'">Page '.$i.'</a></li>';
 		}
 		?>
 	</ul>
