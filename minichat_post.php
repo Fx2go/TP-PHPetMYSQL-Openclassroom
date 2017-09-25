@@ -14,7 +14,7 @@ setcookie('pseudo', $pseudo, time() + 365*24*3600);
 	// On execute la requete pour stocker les variables
 
 
-	$req = $bdd->prepare('INSERT INTO minichat(pseudo,message) VALUES(:pseudo,:message)');
+	$req = $bdd->prepare('INSERT INTO minichat(pseudo,message,date) VALUES(:pseudo,:message,NOW())');
 
 	$req->execute(array('pseudo'=>$pseudo, 'message'=> $message));
 
