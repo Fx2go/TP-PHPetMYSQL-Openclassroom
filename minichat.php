@@ -7,7 +7,7 @@
 	</head>
 	<body>
 <!--Formulaire -->
-		<form method="post" action="minichat_post.php">
+		<form method="post" action="http://localhost/TP-PHPetMYSQL-Openclassroom/minichat_post.php">
 			<p>	
 <!--Champ "Pseudo"-->
 				Pseudo :
@@ -17,7 +17,7 @@
 				<input type="text" name="message" ></input><br/>
 
 <!--Boutton "Envoyer"-->
-				<input type="submit" name="Envoyer">
+				<input type="submit" value="Envoyer">
 			</p>
 		</form>
 
@@ -44,13 +44,14 @@
 	// On va chercher dans la base minichat les messages
 	include ('minichat_connection_BDD.php');
 	//on prepare la requete... en précisant le lot de messages à afficher
-	$req = $bdd->prepare('SELECT * FROM minichat ORDER BY id  DESC LIMIT :decalage, 10');
+	 $req = $bdd->prepare('SELECT * FROM minichat ORDER BY id  DESC LIMIT :decalage, 10');
+
 	$req->bindParam(':decalage', $decalage, PDO::PARAM_INT);
 	$req->execute();
 	//On affiche les enregistrements du plus récent au plus ancien
 	while ($data = $req->fetch())
 	{
-		echo '<strong>'.$data['pseudo'] .' </strong>: '.$data['message']. '<br />';
+		echo '<em>'.$data['date'].'</em> - <strong>'.$data['pseudo'] .' </strong>: '.$data['message']. '<br />';
 	}
 	//On ferme le traitement de la requête
 	$req->closeCursor();
@@ -73,5 +74,9 @@
 		}
 		?>
 	</ul>
+
+
+
+
 	</body>
 </html>
