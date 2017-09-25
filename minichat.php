@@ -21,7 +21,7 @@
 			</p>
 		</form>
 
-<a href="minichat.php">Rafraichir</a><br/>
+<a href="javascript:window.location.reload()">Rafraichir</a><br/>
 <p>
 <?php
 // Liste des messages ,du plus récent au plus ancien
