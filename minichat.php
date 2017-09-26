@@ -44,7 +44,7 @@
 	// On va chercher dans la base minichat les messages
 	include ('minichat_connection_BDD.php');
 	//on prepare la requete... en précisant le lot de messages à afficher
-	 $req = $bdd->prepare('SELECT * FROM minichat ORDER BY id  DESC LIMIT :decalage, 10');
+	 $req = $bdd->prepare("SELECT pseudo, message, DATE_FORMAT(date, 'Le %d/%m/%Y à %Hh %imin %ss') AS date FROM minichat ORDER BY id  DESC LIMIT :decalage, 10");
 
 	$req->bindParam(':decalage', $decalage, PDO::PARAM_INT);
 	$req->execute();
