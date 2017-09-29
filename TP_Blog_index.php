@@ -11,14 +11,16 @@
 
 	</head>
 	<body>
-	<a href="."><h1> <i class="fa fa-bullhorn" aria-hidden="true"></i> Blog &amp; Coms</h1></a>
+	
 
 	<?php
+	//on insere le titre du blog
+	include('header.php');
 // On va chercher dans la base les articles
 	include ('connection_BDD.php');
 	//on prepare la requete
 
-	 $req = $bdd->query("SELECT id,titre,SUBSTRING(contenu,1,200) AS intro, DATE_FORMAT(date_creation, 'Le %d/%m/%Y à %Hh %imin %ss') AS date_formatee FROM billets ORDER BY id  DESC ");
+	 $req = $bdd->query("SELECT id,titre,SUBSTRING(contenu,1,200) AS intro, DATE_FORMAT(date_creation, 'Le %d/%m/%Y à %Hh %imin') AS date_formatee FROM billets ORDER BY id  DESC ");
 
 	//On affiche les billets du plus récent au plus ancien
 	while ($data = $req->fetch())
@@ -31,11 +33,7 @@
 		 //on affiche chaque titre et extrait de billet
 		?>
 			<div .news>
-			<a href="<?php echo $lien_article;?>">
-				<h3><?php echo htmlspecialchars($data['titre']);?>
-					<br/><span><?php echo htmlspecialchars($data['date_formatee']);?>		</span>
-				</h3>
-			</h3></a>
+				<?php include('titre_billet.php');?>
 			<p .news>
 				<?php echo $decoupe_au_mot;?>
 				...
