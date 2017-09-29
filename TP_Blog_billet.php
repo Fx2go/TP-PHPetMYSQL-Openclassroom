@@ -22,7 +22,7 @@ include ('connection_BDD.php');
 <!DOCTYPE HTML>
 <html>
 	<head>
-		<title><?php echo $data['titre'] ?></title>
+		<title><?php echo htmlspecialchars($data['titre']) ?></title>
         <meta charset="utf-8">
         <meta name="description" content="">
         <link href="https://fonts.googleapis.com/css?family=Geo|Dosis" rel="stylesheet" type="text/css" >
@@ -37,10 +37,10 @@ include ('connection_BDD.php');
 <div .news>
 			
 	<h3>
-		<?php echo $data['titre'];?>		
+		<?php echo htmlspecialchars($data['titre']);?>		
 	</h3>
 	<p .news>
-		<?php echo $data['contenu'];?>
+		<?php echo htmlspecialchars($data['contenu']);?>
 		
 	</p>
 </div>
@@ -63,8 +63,8 @@ include ('connection_BDD.php');
 	while ($data = $req->fetch())
 	{ 
 			echo'<p>';
-			echo'<strong>'.$data['nom_auteur'].'</strong>, le '.$data['date_formatee'];
-			echo' :" '.$data['commentaire'];
+			echo'<strong>'.htmlspecialchars($data['nom_auteur']).'</strong>, le '.htmlspecialchars($data['date_formatee']);
+			echo' :" '.htmlspecialchars($data['commentaire']);
 			echo' "</p>';
 	}
 ?>
