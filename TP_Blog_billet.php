@@ -11,7 +11,7 @@ else
 include ('connection_BDD.php');
 
 
-	 $req = $bdd->prepare("SELECT titre,contenu, DATE_FORMAT(date_creation, 'Le %d/%m/%Y à %Hh %imin %ss') AS date_formatee FROM billets WHERE id= :id_billet");
+	 $req = $bdd->prepare("SELECT titre,contenu, DATE_FORMAT(date_creation, 'Le %d/%m/%Y à %Hh %imin') AS date_formatee FROM billets WHERE id= :id_billet");
 	 
 	$req->bindParam(':id_billet', $id_billet);
 	$req->execute();
@@ -30,15 +30,11 @@ include ('connection_BDD.php');
         <script src="https://use.fontawesome.com/3a7f9ca103.js"></script>
 	</head>
 	<body>
-	<a href="."><h1> <i class="fa fa-bullhorn" aria-hidden="true"></i> Blog &amp; Coms</h1></a>
-
-
-
+	<?php include('header.php');?>
 <div .news>
 			
-	<h3>
-		<?php echo htmlspecialchars($data['titre']);?>		
-	</h3>
+	<?php include('titre_billet.php');?>
+
 	<p .news>
 		<?php echo htmlspecialchars($data['contenu']);?>
 		
