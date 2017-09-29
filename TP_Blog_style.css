@@ -1,32 +1,65 @@
-h1, h3
+h1,h3
 {
     text-align:center;
+
 }
 h3
 {
+    font-family:'Geo',sans-serif;
     background-color:black;
     color:white;
     font-size:1.5em;
     margin:2em 25% 0.5em 25%;
     padding: 1em 1em;
 }
+h3,h4   
+{
+	 font-family:'Geo',sans-serif;
+}
+h1,p
+{
+	font-family: 'Dosis', sans-serif;
+}
+
+h1
+{    
+    margin: 0em 0em;
+    height: 2em;
+    background-color: white;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+}
+
+h1.a
+{color:black;}
+
 .news p
 {
     background-color:#CCCCCC;
     margin-top:0px;
+
 }
 .news
 {
     width:70%;
     margin:auto;
+
 }
 
 a
 {
     text-decoration: none;
+    color:black;
+
 }
 
 h3.a
 {
     color:white;
+}
+
+span
+{
+	font-family: 'Dosis', sans-serif;
+	font-size: 0.5em;
+	font-style:italic;
 }
