@@ -1,7 +1,7 @@
 <?php
-if (isset ($_GET['id']))
+if (isset ($_GET['billet']) )
 	{
-		$id_billet=strip_tags($_GET['id']);
+		$id_billet=strip_tags($_GET['billet']);
 	}
 else
 {//On retourne sur la page principale
@@ -15,8 +15,22 @@ include ('connection_BDD.php');
 	 
 	$req->bindParam(':id_billet', $id_billet);
 	$req->execute();
-	while ($data = $req->fetch())
-	{
+
+
+	$data = $req->fetch();
+	// Si le résultat de la requête est vide (ex: l'ID du billet a été modifié dans l'url envoyée)
+	if(empty($data))
+		// ...alors on affiche à nouveau la page d'accueil
+		{
+?>
+	<h1 .news> ERREUR 404 </h1>
+	<p>	Nous sommes d&eacute;sol&eacute;s pour vous mais le billet n&deg; <?php echo $id_billet; ?> 
+		n&#039;existe pas sur ce blog <br/>.... pour le moment
+	</p>	
+<?php
+		}
+		// ... sinon on affiche la page correspondante
+	else {
 			
 ?>
 <!DOCTYPE HTML>
@@ -41,7 +55,7 @@ include ('connection_BDD.php');
 	</p>
 </div>
 <?php
-}
+
 	//On ferme le traitement de la requête
 	$req->closeCursor();
 ?>
@@ -78,12 +92,12 @@ include ('connection_BDD.php');
 	// on affiche un formulaire de saisie de commentaires
 ?>
 	<!--Formulaire -->
-	<hr/>
+
 	<div id="form_comm">
 		<form method="post" action="commentaires_post.php">
 			<p>	
 			<!--Champ "Pseudo"-->
-				Pseudo :
+				<strong>Pseudo</strong> :
 				<input type="text" name="pseudo" value="<?php if(isset($_COOKIE['pseudo'])){echo $_COOKIE['pseudo'];} ?>"></input>
 			<!--Champ "Commentaire"-->
 				Commentaire :
@@ -95,9 +109,9 @@ include ('connection_BDD.php');
 		</form>
 	</div>
 
+<?php
+}// fin du ELSE
 
-
-
-
+?>
 	</body>
 </html>
