@@ -2,9 +2,11 @@
 
 //On récupère les variables du pseudo et message envoyées par POST
 //et on élimine d'éventuelles balises html
-$pseudo=strip_tags($_POST['pseudo']);
-$commentaire=strip_tags($_POST['commentaire']);
-$id_billet=strip_tags($_POST['id_billet']);
+$pseudo=htmlspecialchars($_POST['pseudo']);
+$pseudo=stripslashes($pseudo);//Suppression des antislashs saisis
+$commentaire=htmlspecialchars($_POST['commentaire']);
+$commentaire=stripslashes($commentaire);//Suppression des antislashs saisi
+$id_billet=htmlspecialchars($_POST['id_billet']);
 
 // On stock le pseudo dans un cookie
 setcookie('pseudo', $pseudo, time() + 365*24*3600);
