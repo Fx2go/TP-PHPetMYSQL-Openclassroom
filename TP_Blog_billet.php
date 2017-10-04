@@ -50,7 +50,7 @@ include ('connection_BDD.php');
 	<h4><i class="fa fa-commenting-o" aria-hidden="true"></i> Commentaires</h4>
 
 <?php
-		$req = $bdd->prepare("SELECT id,id_billet,nom_auteur,commentaire, DATE_FORMAT(date_commentaire, '%d/%m/%Y à %Hh %imin') AS date_formatee FROM commentaires WHERE id_billet= :id_billet ORDER BY id ");
+		$req = $bdd->prepare("SELECT id,id_billet,nom_auteur,commentaire, DATE_FORMAT(date_commentaire, '%d/%m/%Y à %Hh %imin') AS date_formatee FROM commentaires WHERE id_billet= :id_billet ORDER BY id DESC ");
 	// $req->execute(array('id_billet'=>$id_billet));
 	 
 	$req->bindParam(':id_billet', $id_billet);
@@ -74,6 +74,30 @@ include ('connection_BDD.php');
 
 	//On ferme le traitement de la requête
 	$req->closeCursor();
+
+	// on affiche un formulaire de saisie de commentaires
 ?>
+	<!--Formulaire -->
+	<hr/>
+	<div id="form_comm">
+		<form method="post" action="commentaires_post.php">
+			<p>	
+			<!--Champ "Pseudo"-->
+				Pseudo :
+				<input type="text" name="pseudo" value="<?php if(isset($_COOKIE['pseudo'])){echo $_COOKIE['pseudo'];} ?>"></input>
+			<!--Champ "Commentaire"-->
+				Commentaire :
+				<input type="text" name="commentaire" ></input>
+				<input type="hidden" name="id_billet" value="<?php echo $id_billet ?>"></input>
+
+				<input type="submit" value="Envoyer">
+			</p>
+		</form>
+	</div>
+
+
+
+
+
 	</body>
 </html>
