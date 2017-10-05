@@ -23,7 +23,7 @@ include ('connection_BDD.php');
 		// ...alors on affiche à nouveau la page d'accueil
 		{
 ?>
-	<h1 .news> ERREUR 404 </h1>
+
 	<p>	Nous sommes d&eacute;sol&eacute;s pour vous mais le billet n&deg; <?php echo $id_billet; ?> 
 		n&#039;existe pas sur ce blog <br/>.... pour le moment
 	</p>	
@@ -61,7 +61,7 @@ include ('connection_BDD.php');
 ?>
 
 <div.commentaires>
-	<h4><i class="fa fa-commenting-o" aria-hidden="true"></i> Commentaires</h4>
+	<h4><i class="fa fa-comments" aria-hidden="true"></i> Commentaires</h4>
 
 <?php
 		$req = $bdd->prepare("SELECT id,id_billet,nom_auteur,commentaire, DATE_FORMAT(date_commentaire, '%d/%m/%Y à %Hh %imin') AS date_formatee FROM commentaires WHERE id_billet= :id_billet ORDER BY id DESC ");
@@ -97,14 +97,14 @@ include ('connection_BDD.php');
 		<form method="post" action="commentaires_post.php">
 			<p>	
 			<!--Champ "Pseudo"-->
-				<strong>Pseudo</strong> :
-				<input type="text" name="pseudo" value="<?php if(isset($_COOKIE['pseudo'])){echo $_COOKIE['pseudo'];} ?>"></input>
+				<strong><i class="fa fa-user-circle-o" aria-hidden="true"></i></strong> :
+				<input type="text" name="pseudo" value="<?php if(isset($_COOKIE['pseudo'])){echo $_COOKIE['pseudo'];} ?>" placeholder="Commentaire" ></input>
 			<!--Champ "Commentaire"-->
-				Commentaire :
-				<input type="text" name="commentaire" ></input>
+				<i class="fa fa-commenting-o" aria-hidden="true"></i>
+				<input type="text" name="commentaire" placeholder="Commentaire"></input>
 				<input type="hidden" name="id_billet" value="<?php echo $id_billet ?>"></input>
 
-				<input type="submit" value="Envoyer">
+				<input type="submit" value="Poster">
 			</p>
 		</form>
 	</div>
